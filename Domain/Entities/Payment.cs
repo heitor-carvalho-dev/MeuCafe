@@ -16,7 +16,7 @@ namespace Domain.Entities
         public PaymentStatus Status { get; set; } = PaymentStatus.PENDING;
         public string PixTxId { get; set; } = string.Empty;
         public string QrCodePayload { get; set; } = string.Empty;
-        public DateTimeOffset ExpiresAt { get; set; }
+        public DateTimeOffset ExpiresAt { get; set; } = DateTimeOffset.UtcNow.AddMinutes(30);
         public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
         public DateTimeOffset? ConfirmedAt { get; set; }
         public DateTimeOffset? ReversedAt { get; set; }
