@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Exceptions;
 
 namespace Application.UseCases.Payment.Create
 {
@@ -20,6 +21,8 @@ namespace Application.UseCases.Payment.Create
 
         public async Task<PaymentResponseDTO> ExecuteAsync(PaymentCreateRequestDTO requestDTO)
         {
+            if ( requestDTO.Value <= (decimal)0 ) throw new NoValuePaymentException();
+
             var payment = new Domain.Entities.Payment(
                 requestDTO.RecipientId,
                 requestDTO.Value
