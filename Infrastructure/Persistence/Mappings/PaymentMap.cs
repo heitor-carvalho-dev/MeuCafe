@@ -34,17 +34,6 @@ namespace Infrastructure.Persistence.Mappings
                 .IsRequired()
                 .ValueGeneratedNever();
 
-            //SENDER ID
-            builder.Property(p => p.SenderId)
-                .HasColumnName("sender_id");
-
-            //FK SENDER 
-            builder.HasOne(p => p.Sender)
-                .WithMany()
-                .HasForeignKey(p => p.SenderId)
-                .HasConstraintName(PaymentConstraints.FKSender)
-                .OnDelete(DeleteBehavior.Restrict);
-
             //RECIPIENT ID
             builder.Property(p => p.RecipientId)
                 .HasColumnName("recipient_id");

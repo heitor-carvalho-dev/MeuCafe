@@ -1,6 +1,7 @@
 using Application.UseCases.Clients.List;
 using Application.UseCases.Clients.Create;
 using Application.UseCases.Clients.Delete;
+using Application.UseCases.Payment.Create;
 using Domain.Entities;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
@@ -16,16 +17,19 @@ public class RequestsController : ControllerBase
     private readonly ListClientsUseCase _listClientsUseCase;
     private readonly CreateClientUseCase _createClientUseCase;
     private readonly DeleteClientUseCase _deleteClientUseCase;
+    private readonly CreatePaymentUseCase _createPaymentUseCase;
 
     public RequestsController(
         ListClientsUseCase listClientsUseCase, 
         CreateClientUseCase createClientUseCase, 
-        DeleteClientUseCase deleteClientUseCase
+        DeleteClientUseCase deleteClientUseCase,
+        CreatePaymentUseCase createPaymentUseCase
         )
     {
         _listClientsUseCase = listClientsUseCase;
         _createClientUseCase = createClientUseCase;
         _deleteClientUseCase = deleteClientUseCase;
+        _createPaymentUseCase = createPaymentUseCase;
     }
 
     [HttpGet("AllActiveClients")]
@@ -53,6 +57,15 @@ public class RequestsController : ControllerBase
         await _deleteClientUseCase.DeleteClientById(id);
 
         return NoContent();
+    }
+
+    [HttpPost("CreatePayment")]
+    public async Task<ActionResult<PaymentCreateRequestDTO>> CreatePayment(
+        [FromBody] PaymentCreateRequestDTO dto)
+    {
+        var result = await _createPaymentUseCase.ExecuteAsync(dto);
+
+        return Ok(result);
     }
 
 }

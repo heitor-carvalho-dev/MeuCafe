@@ -25,7 +25,7 @@ public class CreateClientUseCase
 
         await _clientRepository.CreateNewClient(client);
 
-        var link = "http://127.0.0.1:5500/u/";
+        var link = "http://MeuCafe/u/";
 
         var result = new ClientCreatedDTO(link + client.Name);
 

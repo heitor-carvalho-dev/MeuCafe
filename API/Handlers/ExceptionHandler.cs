@@ -1,3 +1,4 @@
+using Application.Exceptions;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,8 @@ public class ExceptionHandler : IExceptionHandler
             ClientNotFoundException => (StatusCodes.Status404NotFound, "Client not Found"),
             DbUpdateException => (StatusCodes.Status409Conflict, "Database Conflict"),
             DomainException => (StatusCodes.Status400BadRequest, "Domain validation error"),
+            NoValuePaymentException =>(StatusCodes.Status400BadRequest, "Payment must have a value"),
+            RecipientNotFoundException => (StatusCodes.Status404NotFound, "Recipient not found"),
             _ => (StatusCodes.Status500InternalServerError, "Internal Server Error")
         };
 

@@ -20,3 +20,7 @@ Content-Type: application/json
 GET {{API_HostAddress}}/system/warmup
 
 ###
+
+GET {{API_HostAddress}}/api/client/AllActiveClients
+
+###

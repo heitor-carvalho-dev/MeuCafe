@@ -19,12 +19,6 @@ public class DeleteClientUseCase
 
     public async Task DeleteClientById(Guid id)
     {
-        bool pending = await _paymentRepository.AnyPendingByClientId(id);
-
-        if (pending)
-            throw new BusinessException("CLient have a payment pending");
-
-
         int rows = await _clientRepository.DeleteClientById(id);
 
         if (rows == 0) throw new ClientNotFoundException();

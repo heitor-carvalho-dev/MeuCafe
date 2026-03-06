@@ -10,6 +10,7 @@ using Application.UseCases.Clients.Delete;
 using Domain.Security;
 using Application.UseCases.Clients.List;
 using Application.Repositories;
+using Application.UseCases.Payment.Create;
 
 namespace Infrastructure;
 
@@ -33,6 +34,7 @@ public static class InfrastructureModule
         services.AddScoped<DeleteClientUseCase>();
         services.AddScoped<IPasswordHasher, Pbkdf2PasswordHasher>();
         services.AddScoped<IPaymentRepository, PaymentRepository>();
+        services.AddScoped<CreatePaymentUseCase>();
 
         return services;
     }
