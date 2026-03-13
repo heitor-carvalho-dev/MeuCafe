@@ -17,7 +17,6 @@ public class RequestsController : ControllerBase
     private readonly ListClientsUseCase _listClientsUseCase;
     private readonly CreateClientUseCase _createClientUseCase;
     private readonly DeleteClientUseCase _deleteClientUseCase;
-    private readonly CreatePaymentUseCase _createPaymentUseCase;
 
     public RequestsController(
         ListClientsUseCase listClientsUseCase, 
